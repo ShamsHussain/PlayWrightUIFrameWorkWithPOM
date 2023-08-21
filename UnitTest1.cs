@@ -1,4 +1,5 @@
 using Microsoft.Playwright;
+using Microsoft.Playwright.NUnit;
 
 namespace PlayWrightUIE2E
 {

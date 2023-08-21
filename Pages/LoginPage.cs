@@ -32,7 +32,18 @@ namespace PlayWrightUIE2E.Pages
 
         public async Task ClickOnLogin()
         {
-            await _loginLink.ClickAsync();
+            /* this method perform 2 level wait through listing network
+             * 1st before click action wait and check navigation
+             * 2nd after click check navigation with targetted url
+            */
+            await _page.RunAndWaitForNavigationAsync(action: async () =>
+            {
+                await _loginLink.ClickAsync();
+            }, new PageRunAndWaitForNavigationOptions
+            {
+                UrlString = "**/Login"
+            });
+            
         }
 
         public async Task UserCredentialsSubmit(string UserName, string Passwrod)
