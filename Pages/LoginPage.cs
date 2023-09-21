@@ -36,14 +36,17 @@ namespace PlayWrightUIE2E.Pages
              * 1st before click action wait and check navigation
              * 2nd after click check navigation with targetted url
             */
-            await _page.RunAndWaitForNavigationAsync(action: async () =>
+
+            /*await _page.RunAndWaitForNavigationAsync(action: async () =>
             {
                 await _loginLink.ClickAsync();
             }, new PageRunAndWaitForNavigationOptions
             {
-                UrlString = "**/Login"
+                UrlString = "Login"
             });
-            
+
+            */
+            await _loginLink.ClickAsync();
         }
 
         public async Task UserCredentialsSubmit(string UserName, string Passwrod)

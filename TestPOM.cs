@@ -5,21 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PlayWrightUIE2E.Pages;
+using Microsoft.Playwright;
+using System.Threading.Channels;
 
 namespace PlayWrightUIE2E
 {
-    public class TestPOM:PageTest
-    {
-        [Test]
 
+    public class TestPOM : BaseTest
+    {
+        [SetUp]
+        public void TestPOMSetup()
+        {
+            Console.WriteLine("child class setup");
+        }
+        [Test(Description ="Verify user login")]
         public async Task LoginTest()
         {
-            var page = new LoginPage(await Browser.NewPageAsync());
+           // var browser = await BrowserType.LaunchAsync(new BrowserTypeLaunchOptions { Channel = "msedge"});
+            var page = new LoginPage(await browserInstance.NewPageAsync());
             await page.NavigatetoTarget();
             await page.ClickOnLogin();
             await page.UserCredentialsSubmit("Ztestuser","Test@123");
+            await browserInstance.CloseAsync();
       
         }
+
+
 
     }
 }
